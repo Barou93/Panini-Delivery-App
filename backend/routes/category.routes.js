@@ -6,7 +6,7 @@ const upload = require('../middleware/upload.middleware');
 
 //Categories Routes
 
-router.post('/', upload.single('file'), categoryController.createCategory);
+router.post('/', upload.single('category'), categoryController.createCategory);
 
 
 router.get('/:id', categoryController.getCategory);

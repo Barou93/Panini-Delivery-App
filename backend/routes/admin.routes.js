@@ -20,7 +20,7 @@ router.delete('/:id', adminController.deleteAdmin);
 
 //Upload File
 
-router.post('/:id/upload', upload.single('file'), uploadController.uploadProfil);
+router.post('/:id/upload', upload.single('profil'), uploadController.uploadProfil);
 
 
 

@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       models.Product.belongsTo(models.Categorie, { foreignKey: 'categorieId', targetKey: 'id' });
-      models.Product.hasMany(models.OrderDetail, { foreignKey: 'productId', targetKey: 'id' });
-      models.Product.hasMany(models.ProductExtra, { foreignKey: 'productId', targetKey: 'id' });
+      //models.Product.hasMany(models.OrderDetail, { foreignKey: 'productId', targetKey: 'id' });
+      //models.Product.hasMany(models.ProductExtra, { foreignKey: 'productId', targetKey: 'id' });
     }
   }
   Product.init({

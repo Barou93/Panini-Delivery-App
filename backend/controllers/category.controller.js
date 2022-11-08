@@ -112,10 +112,6 @@ module.exports.deleteCategory = async (req, res, next) => {
         //const token = req.cookies.jwt;
         const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
         const admin = await Admin.findByPk(token.id);
-
-        const categorie = await Categorie.findOne({ where: { id } });
-        if (!categorie) return res.status(404).json('Categorie non disponible');
-
         const filename = categorie.picture.split('./uploads/category/')[1];
         console.log(filename);
 

@@ -7,6 +7,7 @@ const cors = require('cors');
 //Routes dependences
 const adminRoutes = require('./routes/admin.routes');
 const categoryRoutes = require('./routes/category.routes');
+const productRoutes = require('./routes/product.routes');
 
 
 
@@ -34,6 +35,8 @@ app.get('/jwtid', requireAuth, (req, res) => {
 //Routes
 app.use('/api/admin', adminRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/categories', productRoutes);
+app.use('/api/products', productRoutes);
 
 //Strating Server
 

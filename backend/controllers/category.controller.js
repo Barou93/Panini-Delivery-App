@@ -53,6 +53,7 @@ module.exports.createCategory = async (req, res) => {
     }
 }
 
+//Only User dashbord
 module.exports.getAllCategory = async (req, res) => {
     await Categorie.findAll({
         order: [['createdAt', 'ASC']]
@@ -62,8 +63,6 @@ module.exports.getAllCategory = async (req, res) => {
         .catch((err) => {
             return res.status(400).json(err);
         })
-
-
 }
 
 module.exports.getCategory = async (req, res) => {
@@ -110,6 +109,7 @@ module.exports.deleteCategory = async (req, res, next) => {
     try {
         const { id } = req.params;
         //const token = req.cookies.jwt;
+        const categorie = await Categorie.findOne({ where: { id } });
         const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
         const admin = await Admin.findByPk(token.id);
         const filename = categorie.picture.split('./uploads/category/')[1];

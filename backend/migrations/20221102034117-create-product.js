@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       product_image: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       price: {

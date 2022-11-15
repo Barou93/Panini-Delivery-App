@@ -79,7 +79,7 @@ module.exports.showAllProducts = async (req, res) => {
         order: [['createdAt', 'ASC']]
     });
 
-    if (allProduct) return res.status(200).json(products);
+    if (allProduct) return res.status(200).json(allProduct);
 
     else return res.status(400).json("Aucun produit disponible, Ajouter un produit");
 
@@ -154,36 +154,38 @@ module.exports.updateProduct = async (req, res) => {
 
     const productId = req.params.id;
 
-    //const { product_image } = req.body;
+    try {
 
-    let image;
+        let image;
 
-
-    // check new file and Update product picture 
-
-    if (req.file !== undefined) {
-        image = `./uploads/food/${req.file.filename}`;
-    }
-
-
-    if (productId) {
-        const product = await Product.update(
-            {
-                name: req.body.name,
-                product_image: image,
-                price: req.body.price,
-                quantity: req.body.price
-            },
-            { where: { id: productId } })
-        if (product) {
-            return res.status(200).json(product);
+        // check new file and Update product picture
+        if (req.file !== undefined) {
+            image = `./uploads/food/${req.file.filename}`;
         } else {
-            return res.status(400).json('Impossible de mettre le produit à jour.')
+            req.body
         }
 
+        if (productId) {
+            const product = await Product.update(
+                {
+                    name: req.body.name,
+                    product_image: image,
+                },
+                { where: { id: productId } })
+            if (product) {
+                return res.status(200).json(product);
+            } else {
+                return res.status(400).json('Impossible de mettre le produit à jour.')
+            }
 
-    } else {
-        return res.status(404).json('Le product séléctionner est indisponible');
+
+        } else {
+            return res.status(404).json('Le product séléctionner est indisponible');
+        }
+
+    } catch (error) {
+        return res.status(500).json(error);
+
     }
 
 }

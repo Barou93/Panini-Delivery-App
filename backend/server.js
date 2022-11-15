@@ -8,6 +8,7 @@ const cors = require('cors');
 const adminRoutes = require('./routes/admin.routes');
 const categoryRoutes = require('./routes/category.routes');
 const productRoutes = require('./routes/product.routes');
+const optionRoutes = require('./routes/option.routes');
 
 
 
@@ -37,6 +38,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/categories', productRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/options', optionRoutes);
 
 //Strating Server
 

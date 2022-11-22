@@ -2,12 +2,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('OrderDetails', {
+    await queryInterface.createTable('OrderItems', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+
+      cartId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Carts',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
       },
       productId: {
         allowNull: false,
@@ -15,15 +25,24 @@ module.exports = {
         references: {
           model: 'Products',
           key: 'id'
-        }
+        },
+        //onDelete: 'CASCADE',
+        //onUpdate: 'CASCADE'
       },
-      customerId: {
-        allowNull: false,
+      optionId: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customers',
+          model: 'Options',
           key: 'id'
-        }
+        },
+        //onDelete: 'CASCADE',
+        //onUpdate: 'CASCADE'
+      },
+      quantity: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,
@@ -36,7 +55,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('OrderDetails');
+    await queryInterface.dropTable('OrderItems');
   }
 };
-

@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class Option extends Model {
 
     static associate(models) {
-      // define association here
+      models.Option.hasMany(models.OrderItem, { foreignKey: 'optionId', targetKey: 'id' });
+
+
     }
   }
   Option.init({

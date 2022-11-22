@@ -143,10 +143,7 @@ module.exports.login = async (req, res) => {
 
         res.status(500).json(error);
         console.log(error)
-
     }
-
-
 };
 
 module.exports.changePassword = async (req, res) => {

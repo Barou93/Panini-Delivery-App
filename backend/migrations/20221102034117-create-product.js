@@ -9,6 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+
       categorieId: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -16,7 +17,8 @@ module.exports = {
           model: 'Categories',
           key: 'id'
 
-        }
+        },
+        onDelete: 'CASCADE',
       },
       name: {
         allowNull: false,
@@ -30,10 +32,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

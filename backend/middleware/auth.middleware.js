@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const models = require('../models');
-const Admin = models.Admin;
+const { Admin, Cart, OrderItem } = models;
+
 
 
 module.exports.checkAdmin = (req, res, next) => {
@@ -37,6 +38,30 @@ module.exports.requireAuth = (req, res, next) => {
                 next();
             }
         })
+    }
+
+}
+
+module.exports.checkCart = async (req, res, next) => {
+    const token = req.cookies.cart;
+
+    if (token) {
+        jwt.verify(token, process.env.CART_TOKEN, async (err, decodedToken) => {
+            if (err) {
+                res.locals.cart = null;
+
+                res.cookie('cart', '', { maxAge: 1 });
+                next();
+            } else {
+                const cart = await Cart.findByPk(decodedToken.id)
+                res.locals.cart = cart;
+                next()
+            }
+        })
+    } else {
+        res.locals.admin = null;
+        next();
+
     }
 
 }

@@ -101,8 +101,6 @@ module.exports.updateCategory = async (req, res) => {
     } else {
         return res.status(404).json('Vous devez être connecté')
     }
-
-
 }
 
 module.exports.deleteCategory = async (req, res, next) => {

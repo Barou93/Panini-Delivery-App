@@ -24,6 +24,42 @@ module.exports.adminInfos = async (req, res) => {
 };
 
 
+module.exports.getAdmins = async (req, res) => {
+
+    try {
+        const pageAsNumber = Number.parseInt(req.query.page);
+        const sizeAsNumber = Number.parseInt(req.query.size);
+
+        let page = 0;
+
+        if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+            page = pageAsNumber;
+        }
+
+        let size = 0;
+
+        if (!Number.isNaN(sizeAsNumber) && !(sizeAsNumber > 10) && !(sizeAsNumber < 1)) {
+            size = sizeAsNumber;
+        }
+
+        const allAdmins = await Admin.findAndCountAll({
+            limit: size,
+            offset: page * size,
+            order: [['createdAt', 'DESC']]
+
+        })
+        return res.send({
+            content: allAdmins.rows,
+            totalPages: Math.ceil(allAdmins.count / Number.parseInt(size))
+        })
+
+    } catch (error) {
+
+    }
+}
+
+
+
 //Delete Admin
 module.exports.deleteAdmin = async (req, res) => {
     const { id } = req.params;

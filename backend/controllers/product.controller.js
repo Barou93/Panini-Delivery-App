@@ -16,7 +16,7 @@ module.exports.createProduct = async (req, res) => {
         const admin = await Admin.findByPk(adminId);
         const { categorieId } = req.params;
 
-        const { name, product_image, price, quantity } = req.body;
+        const { name, product_image, price } = req.body;
 
         let image;
 
@@ -34,7 +34,7 @@ module.exports.createProduct = async (req, res) => {
                 name,
                 product_image: image,
                 price,
-                quantity
+
 
             })
 
@@ -56,14 +56,35 @@ module.exports.createProduct = async (req, res) => {
 //Only Admin Dashboard
 module.exports.getAllProducts = async (req, res) => {
     const { categorieId } = req.params;
+
     if (categorieId) {
-        await Product.findAll({ where: { categorieId } }, {
-            order: [['createdAt', 'ASC']]
-        }).then((products) => {
-            return res.status(200).json(products);
-        }).catch((err) => {
-            return res.status(400).json(err);
+        const pageAsNumber = Number.parseInt(req.query.page);
+        const sizeAsNumber = Number.parseInt(req.query.size);
+
+        let page = 0;
+
+        if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+            page = pageAsNumber;
+        }
+
+        let size = 0;
+
+        if (!Number.isNaN(sizeAsNumber) && !(sizeAsNumber > 10) && !(sizeAsNumber < 1)) {
+            size = sizeAsNumber;
+        }
+
+        const allCatProducts = await Product.findAndCountAll({
+            limit: size,
+            offset: page * size,
+            order: [['createdAt', 'DESC']]
+
         })
+        return res.send({
+            content: allCatProducts.rows,
+            totalPages: Math.ceil(allCatProducts.count / Number.parseInt(size))
+        })
+
+
 
     } else {
         return res.status(404).json('Aucun produit disponible');
@@ -74,14 +95,33 @@ module.exports.showAllProducts = async (req, res) => {
     //const categorieId = req.params.categorieId;
 
     //if(categorieId)
+    const pageAsNumber = Number.parseInt(req.query.page);
+    const sizeAsNumber = Number.parseInt(req.query.size);
 
-    const allProduct = await Product.findAll({
+    let page = 0;
+
+    if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+        page = pageAsNumber;
+    }
+
+    let size = 0;
+
+    if (!Number.isNaN(sizeAsNumber) && !(sizeAsNumber > 6) && !(sizeAsNumber < 1)) {
+        size = sizeAsNumber;
+    }
+
+    const allProducts = await Product.findAndCountAll({
+        limit: size,
+        offset: page * size,
         order: [['createdAt', 'ASC']]
-    });
 
-    if (allProduct) return res.status(200).json(allProduct);
+    })
+    return res.send({
+        content: allProducts.rows,
+        totalPages: Math.ceil(allProducts.count / Number.parseInt(size))
+    })
 
-    else return res.status(400).json("Aucun produit disponible, Ajouter un produit");
+
 
 
 }

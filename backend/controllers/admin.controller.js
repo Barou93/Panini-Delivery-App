@@ -1,6 +1,12 @@
 const models = require('../models');
 const Admin = models.Admin;
 
+/**
+ * 
+ * @param {String} req 
+ * @param {String} res 
+ *  @param {Number} Pagination
+ */
 
 module.exports.adminInfos = async (req, res) => {
 
@@ -30,7 +36,10 @@ module.exports.getAdmins = async (req, res) => {
         const pageAsNumber = Number.parseInt(req.query.page);
         const sizeAsNumber = Number.parseInt(req.query.size);
 
+        //Filter les données par pagination pour ne pas surcharger le serveur
+
         let page = 0;
+
 
         if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
             page = pageAsNumber;

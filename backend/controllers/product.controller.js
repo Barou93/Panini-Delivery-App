@@ -2,8 +2,18 @@ const models = require('../models');
 
 const { Admin, Categorie, Product } = models;
 const jwt = require('jsonwebtoken');
-
+const sharp = require('sharp');
 const fs = require('fs');
+
+/**
+ * 
+ * @param {String} req 
+ * @param {Sting} res 
+ * @returns {String}
+ * @returns {Number}
+ */
+
+//Only Admin routes
 
 module.exports.createProduct = async (req, res) => {
     const token = req.cookies.jwt;
@@ -12,31 +22,47 @@ module.exports.createProduct = async (req, res) => {
 
 
     try {
-
         const admin = await Admin.findByPk(adminId);
         const { categorieId } = req.params;
 
+        const { filename: food } = req.file;
+        const { file } = req;
         const { name, product_image, price } = req.body;
 
         let image;
 
-        if (req.file !== undefined) {
-            image = `./uploads/food/${req.file.filename}`;
+        //Store the compress img in db
+        const productImg = file.destination + '/' + 'resized_' + food;
+
+        //Verify if product is also stored in DB
+        const productIsFound = await Product.findOne({ where: { name: name } });
+        
+        if (productIsFound) return res.status(401).json(`${name} existe déjà sur la liste des produits`);
+
+        //Convert any input to very high quality JPEG
+        await sharp(file.path)
+            .resize(640, 427)
+            .jpeg({
+                quality: 100,
+                chromaSubsampling: '4:4:4'
+            }).toFile(productImg);
+        fs.unlinkSync(file.path);
+            
+        //Check if picture fields isn't undefined
+        if (file !== undefined) {
+            image = productImg;
         }
 
-
+        //Check if admin is connected and the category exist in DB
         if (admin && categorieId) {
-
-            //const productFound = await Product.findOne({});
 
             const product = await Product.create({
                 categorieId,
                 name,
                 product_image: image,
                 price,
-
-
             })
+           
 
             if (product) {
                 return res.status(201).json(product.toJSON());
@@ -197,10 +223,26 @@ module.exports.updateProduct = async (req, res) => {
     try {
 
         let image;
+        const { file } = req;
+        const { filename: food } = req.file;
+
+        //Store the compress image with resize name
+        const updateImg = file.destination + '/' + 'resized' + food;
+     
+         // Convert any input to very high quality JPEG output
+        await sharp(file.path)
+            .resize(640, 427)
+            .jpeg({
+                quality: 100,
+                chromaSubsampling: '4:4:4'
+            })
+            .toFile(updateImg);
+        
+        fs.unlinkSync(file.path);
 
         // check new file and Update product picture
         if (req.file !== undefined) {
-            image = `./uploads/food/${req.file.filename}`;
+            image = updateImg;
         } else {
             req.body
         }
@@ -245,6 +287,7 @@ module.exports.deleteProduct = async (req, res) => {
         if (!admin) return res.status(401).json("Vous n'êtes pas authorisé à faire cette action");
         console.log(product.id)
 
+        //Delete  product with image in the DB Base  
         fs.unlink(`../frontend/public/uploads/food/${filename}`, () => {
             const result = Product.destroy({ where: { id: product.id } });
             if (!result) return res.status(404).json("Ce produit n'est pas disponible");

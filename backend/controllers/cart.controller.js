@@ -28,6 +28,8 @@ module.exports.addToCart = async (req, res, next) => {
             option = req.body.optionId;
         }
         const isFound = await OrderItem.findOne({ where: { productId: product.id } });
+
+        //Verifier si l'article a déjà été ajouté au panier
         if (isFound) return res.status(401).json(`${product.name} a déjà été ajouter au panier`);
 
         if (!token) {
@@ -43,7 +45,8 @@ module.exports.addToCart = async (req, res, next) => {
                     productId,
                     quantity,
                     optionId: option
-                })
+                });
+                res.redirect('/cart');
                 return res.status(201).json({ order: createOrder.toJSON(), sessionToken });
             }
 
@@ -59,6 +62,7 @@ module.exports.addToCart = async (req, res, next) => {
                     quantity,
                     optionId: option
                 })
+                res.redirect('/cart');
                 return res.status(201).json(addOrder.toJSON());
             }
         }
@@ -176,6 +180,7 @@ module.exports.deleteCartItem = async (req, res) => {
         const deleteCart = await OrderItem.destroy({ where: { id: item.id } });
 
         if (deleteCart) return res.status(200).json("Le produit a été rétirer du panier");
+
 
         else return res.status(404).json("Cet article n'est plus disponible")
 

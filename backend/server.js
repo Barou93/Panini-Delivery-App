@@ -26,10 +26,10 @@ app.use(cookieParser());
 app.use(cors());
 
 
-const { checkAdmin, requireAuth, checkCart } = require('./middleware/auth.middleware');
+const {requireAuth, checkCart } = require('./middleware/auth.middleware');
 
 //Jwt ROUTES
-app.get('*', checkAdmin);
+//app.get('*', checkAdmin);
 app.get('*', checkCart);
 app.get('/jwtid', requireAuth, (req, res) => {
     return res.status(200).json(res.locals.admin);

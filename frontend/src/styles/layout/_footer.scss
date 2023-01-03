@@ -1,0 +1,79 @@
+.footer {
+  @include desktop {
+    display: block;
+    color: #fff;
+    padding: 0;
+  }
+
+  &__details {
+    display: none;
+    @include desktop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 25px;
+    }
+  }
+  &__social {
+    display: none;
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__icons {
+      @include desktop {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+    }
+    h2 {
+      @include desktop {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    &__icon {
+      @include desktop {
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        background: url(../assets/icons/facebook-white.svg) center / 100% 100%
+          no-repeat;
+        &:hover {
+          background: url(../assets/icons/facebook.svg) center / 100% 100%
+            no-repeat;
+        }
+      }
+    }
+    .ins {
+      @include desktop {
+        background: url(../assets/icons/instagram-white.svg) center / 100% 100%
+          no-repeat;
+        &:hover {
+          background: url(../assets/icons/instagram.svg) center / 100% 100%
+            no-repeat;
+        }
+      }
+    }
+  }
+  &__infos {
+    display: none;
+    @include desktop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      background: #333;
+      padding: 12px 25px;
+      a {
+        color: #fff;
+        font-weight: bold;
+        &:hover {
+          color: $primarycolor;
+        }
+      }
+    }
+  }
+}

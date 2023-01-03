@@ -1,0 +1,130 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $blackcolor;
+  @include desktop {
+    background-color: #f2f2f2;
+  }
+
+  &__infos {
+    @include desktop {
+      background-color: #f2f2f2;
+      width: 100%;
+    }
+  }
+
+  &__topbar {
+    display: block;
+    @include desktop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      box-shadow: $boxShadow-2;
+      width: 100%;
+      padding: 15px 8px;
+    }
+
+    &__cart__qty {
+      @include desktop {
+        position: absolute;
+        right: 100px;
+        width: 15px;
+        height: 15px;
+        line-height: 1.1;
+        font-size: 12px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 50%;
+        background-color: $primarycolor;
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+    &__cart__icon {
+      @include desktop {
+        font-size: 17px;
+        color: $primarycolor;
+        border: 1px solid $primarycolor;
+        padding: 8px 5px;
+
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin-bottom: -3px;
+          margin-right: 5px;
+          background: url(../assets/icons/shopping-bag-red.svg) center / 100%
+            100% no-repeat;
+        }
+        &:hover {
+          background-color: $primarycolor;
+          color: #fff;
+          &::before {
+            background: url(../assets/icons/shopping-bag-white.svg) center /
+              100% 100% no-repeat;
+          }
+        }
+      }
+    }
+
+    &__logo {
+      font-family: $logo-title-font;
+      font-size: 45px;
+      font-weight: bold;
+      color: $primarycolor;
+    }
+  }
+  &__insight {
+    padding: 20px;
+    font-size: 27px;
+    color: #fff;
+    font-family: $font-3;
+    text-align: center;
+    font-weight: 800;
+    @include desktop {
+      color: $blackcolor;
+    }
+
+    &__strong {
+      color: $primarycolor;
+      font-weight: 800;
+    }
+  }
+}
+
+.formcontainer {
+  width: 100%;
+}
+.search {
+  position: relative;
+  text-align: center;
+
+  &__form {
+    //position: absolute;
+    width: 100%;
+    margin-bottom: 10px;
+    span {
+      position: absolute;
+      min-width: 50px;
+      height: 20px;
+      padding-left: 25px;
+      padding-top: 25px;
+      margin-top: 15px;
+      background: url(../assets/icons/search-icon.svg) center / 100% 100%
+        no-repeat;
+    }
+    &__input {
+      height: 55px;
+      width: 85%;
+      border-radius: 8px;
+      border: 1px solid #fff;
+      padding: 10px 50px;
+      color: $opacitycolor;
+      font-size: 17px;
+    }
+  }
+}

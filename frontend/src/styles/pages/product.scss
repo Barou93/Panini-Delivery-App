@@ -1,0 +1,181 @@
+.product__head {
+  display: none !important;
+  @include desktop {
+    display: block !important;
+  }
+}
+
+.product {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 100%;
+    margin: 1rem 2.5rem;
+    max-width: max-content;
+  }
+
+  &__header {
+    flex: 100%;
+
+    .backtohome {
+      display: none;
+      @include desktop {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__back-icon {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      width: 20px;
+      height: 20px;
+      z-index: 2;
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+  &__img {
+    @include desktop {
+      flex: 0 0 50%;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.86;
+    }
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    @include desktop {
+      position: relative;
+    }
+    &__options {
+      width: 100%;
+      height: 35px;
+      outline: 0;
+      box-shadow: none;
+      border: 1px solid #f2f2f2 !important;
+      background: #fff;
+      background-image: none;
+      padding: 0 0.5em;
+      color: #5c5c5c;
+      cursor: pointer;
+      font-size: 1em;
+      @include desktop {
+        position: relative;
+      }
+    }
+    &__btn {
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      background-color: $primarycolor;
+      font-weight: bold;
+      &:hover {
+        background-color: #df574f;
+      }
+      &__addtocart {
+        height: 50px;
+        line-height: 50px;
+        color: #fff;
+      }
+      @include desktop {
+        position: relative;
+        width: 50%;
+        margin-top: 25px;
+      }
+    }
+  }
+
+  &__order {
+    //padding-left: 8px;
+    flex: 1;
+    @include desktop {
+      flex: 0 0 40%;
+      margin: 0.8rem;
+    }
+
+    &__category {
+      padding: 0 8px;
+      span {
+        font-family: $font-2;
+        font-weight: bold;
+        font-size: 18px;
+        @include desktop {
+          display: none;
+        }
+        @include tablette {
+          font-size: 35px;
+        }
+      }
+      p {
+        font-size: 18px;
+        margin-top: 12px;
+        &::before {
+          content: "";
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 8px;
+          width: 25px;
+          height: 25px;
+          background: url(../assets/icons/panini.svg) center / 100% 100%
+            no-repeat;
+        }
+        @include desktop {
+          display: none;
+        }
+        @include tablette {
+          font-size: 32px;
+        }
+      }
+    }
+    &__title {
+      display: flex;
+      flex-direction: column;
+      padding: 0 8px;
+      @include desktop {
+        margin-bottom: 8.9rem;
+      }
+
+      h3 {
+        font-size: 22px;
+        font-family: $font-3;
+        font-weight: 800;
+        color: $blackcolor;
+        @include tablette {
+          font-size: 40px;
+        }
+      }
+      h4 {
+        font-size: 20px;
+        margin: 20px 0;
+        font-family: $font-2;
+        color: $primarycolor;
+        font-weight: bold;
+        @include tablette {
+          font-size: 35px;
+        }
+      }
+    }
+
+    &__infos {
+      flex: 1;
+      @include desktop {
+        position: relative;
+      }
+    }
+  }
+}

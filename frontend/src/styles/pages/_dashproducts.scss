@@ -1,0 +1,91 @@
+.product_content {
+  position: relative !important;
+}
+
+.dashboard__product {
+  @include mobile-first {
+    width: 100%;
+    height: 100%;
+  }
+  width: 275px;
+  height: 350px;
+  padding: 0;
+  img {
+    width: 100%;
+    height: 250px;
+    @include mobile-first {
+      height: 100%;
+    }
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .product_p {
+    font-size: 25px;
+    margin-top: 5px;
+  }
+}
+.product__buttons {
+  @include mobile-first {
+    padding: 5px 12px;
+  }
+}
+
+.update__product,
+.delete__product {
+  display: inline-block;
+  background: #f1f2f1;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  padding: 10px 8px;
+  opacity: 0.8;
+  transition: all 0.5s ease;
+  @include mobile-first {
+    display: none;
+  }
+  &:hover {
+    opacity: 1;
+  }
+  &::before {
+    content: "";
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: -5px;
+    width: 20px;
+    height: 20px;
+    background: url(../assets/icons/edit-button.svg) center / 100% 100%
+      no-repeat;
+  }
+
+  &__mobile__update,
+  &__mobile__delete {
+    display: none;
+    @include mobile-first {
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: -5px;
+      width: 20px;
+      height: 20px;
+      background: url(../assets/icons/edit-button.svg) center / 100% 100%
+        no-repeat;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  &__mobile__delete {
+    @include mobile-first {
+      background: url(../assets/icons/delete-button.svg) center / 100% 100%
+        no-repeat;
+    }
+  }
+}
+
+.delete__product {
+  &::before {
+    content: "";
+    background: url(../assets/icons/delete-button.svg) center / 100% 100%
+      no-repeat;
+  }
+}

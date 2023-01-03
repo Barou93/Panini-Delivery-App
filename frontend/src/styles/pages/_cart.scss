@@ -1,0 +1,153 @@
+.cart__container {
+  padding: 50px 0;
+}
+
+.cart__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.cart__details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  h3,
+  h4,
+  h5 {
+    font-weight: bold;
+    font-size: 20px;
+    color: $opacitycolor;
+  }
+}
+
+.cart__back-icon {
+  position: absolute;
+  left: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: url(../assets/icons/arrow-back.svg) center center / 20px 20px
+      no-repeat,
+    #d9d9d9;
+}
+
+.cart__items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-weight: bold;
+      font-size: 20px;
+      opacity: 0.86;
+    }
+  }
+  &__infos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__product {
+    margin-top: 12px;
+    &__img {
+      max-width: 90px;
+      border-radius: 8px;
+      img {
+        width: 88.89px;
+        height: 68px;
+        border-radius: 8px;
+      }
+    }
+    &__infos {
+      margin-top: 12px;
+      p {
+        font-size: 17px;
+        font-weight: bold;
+      }
+      small {
+        font-size: 13px;
+      }
+    }
+  }
+  &__quantity {
+    display: flex;
+    align-items: center;
+
+    &__product {
+      //padding: 3px 5px;
+      border: 1px solid #cfcece;
+      width: 20px;
+      padding: 0px 4px;
+      font-size: 12px;
+      text-align: center;
+    }
+    button {
+      cursor: pointer;
+      width: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+  &__price__infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  &__delete {
+    &__btn {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: url(../assets/icons/delete.svg) center center / 10px 10px
+          no-repeat,
+        #d9d9d9;
+    }
+  }
+  &__total {
+    margin-top: 20px;
+    &__container {
+      display: flex;
+      justify-content: end;
+      padding: 0 22px;
+      font-weight: bold;
+      font-size: 18px;
+      p {
+        margin-right: 20px;
+      }
+    }
+  }
+  &__next {
+    padding: 50px 80px;
+    &__btn {
+      float: right;
+      background: #000;
+      width: 181px;
+      height: 45px;
+      text-align: center;
+      color: #fff;
+      line-height: 2;
+      font-weight: bold;
+      font-size: 20px;
+      &:hover {
+        background-color: $btnhover;
+      }
+    }
+  }
+}

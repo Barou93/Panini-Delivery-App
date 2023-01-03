@@ -1,0 +1,135 @@
+.categories_content {
+  background-color: #fff !important;
+}
+
+.dashboard__categories {
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: 100%;
+  &__container {
+    padding: 8px;
+  }
+  &__title {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  &__form {
+    display: flex;
+    //flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    &__text {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      @include tablette {
+        width: 100%;
+      }
+      @include mobile-first {
+        width: 100%;
+      }
+    }
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 45px;
+      width: 100%;
+      @include tablette {
+        display: flex;
+        flex-direction: column;
+      }
+      @include mobile-first {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 12px;
+      }
+      &__input {
+        width: 80%;
+        background-color: $searchcolor;
+        border: 1px solid $searchcolor;
+        padding: 15px 6px;
+        @include tablette {
+          width: 100%;
+        }
+        @include mobile-first {
+          width: 100%;
+        }
+      }
+    }
+    &__picture {
+      position: relative;
+      @include tablette {
+        margin-top: 15px;
+      }
+      @include mobile-first {
+        margin-top: 15px;
+      }
+    }
+    &__buttons {
+      @include tablette {
+        margin-top: 15px;
+        position: relative;
+        bottom: 0;
+      }
+      @include mobile-first {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+
+      position: absolute;
+      bottom: 25px;
+      display: flex;
+      align-items: center;
+      width: 60%;
+      &__add,
+      &__cancel {
+        width: 25%;
+        margin-right: 25px;
+        padding: 12px 5px;
+        background-color: $blackcolor;
+        border-radius: 5px;
+        border: 1px solid $blackcolor;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        @include tablette {
+          width: 50%;
+        }
+        @include mobile-first {
+          width: 50%;
+        }
+        &:hover {
+          background-color: $btnhover;
+        }
+      }
+      &__cancel {
+        background-color: $searchcolor;
+        color: black;
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.29);
+        }
+      }
+    }
+  }
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+  cursor: pointer;
+}
+.inputfile + label {
+  cursor: pointer;
+}

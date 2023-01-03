@@ -1,0 +1,43 @@
+.dash__header {
+  //padding: 5px 8px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #f4f4f4;
+    padding: 5px 46px;
+  }
+  &__logo {
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  .dash__form {
+    border: 1px solid $searchcolor;
+    width: 420px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    border-radius: 18px;
+  }
+  .dash__input {
+    background: $searchcolor;
+    width: 100%;
+    border: 1px solid $searchcolor;
+    font-size: 15px;
+  }
+  &__account {
+    display: flex;
+    align-items: center;
+    img {
+      width: 80px;
+      height: 80px;
+    }
+    p {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+}

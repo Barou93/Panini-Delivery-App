@@ -1,0 +1,27 @@
+@mixin mobile-first {
+  @media only screen and (max-width: 764px) {
+    @content;
+  }
+}
+
+@mixin fullscreen {
+  @media only screen and (max-width: 1240px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablette {
+  @media only screen and (min-width: 765px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin lineargarden {
+  background: linear-gradient(#ff3b2f, #1e1e1e);
+}

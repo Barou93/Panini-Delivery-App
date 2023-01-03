@@ -26,9 +26,9 @@ const storage = multer.diskStorage({
     }
   },
   filename: (req, file, cb) => {
-    let fileExtension = (file.originalname
+    let fileExtension = file.originalname
       .split(".")
-      [file.originalname.split(".").length-1]).toLocaleLowerCase();
+      [file.originalname.split(".").length - 1].toLocaleLowerCase();
     let extension = MIME_TYPES[file.mimetype];
     file.extension = fileExtension.replace("/jpeg/i", "jpg"); // all jpeg images to jpg
 
@@ -39,14 +39,13 @@ const storage = multer.diskStorage({
   },
 });
 
-   
 //Add a constraints to upload files
 const limits = (req, file, cb) => {
   const fileSize = 5 * 1024 * 1024; // 5MB max file size
   if (file.size >= fileSize) {
     cb("Vous ne pouvez pas télécharger un fichier de plus de 5MB", false);
   } else {
-    cb(null, true)
+    cb(null, true);
   }
 };
 

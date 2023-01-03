@@ -1,0 +1,43 @@
+.mobile__appviewer {
+  position: fixed;
+  bottom: 0;
+  padding: 0 25px;
+  background-color: $blackcolor;
+  width: 100%;
+  @include desktop {
+    position: relative;
+    background-color: rgb(27, 27, 27);
+    padding: 0;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 5px;
+    @include desktop {
+      display: none;
+    }
+
+    p {
+      color: #fff;
+      text-align: center;
+    }
+  }
+}
+.active {
+  color: $primarycolor !important;
+}
+
+.active-cart {
+  position: absolute;
+  background-color: #ededed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  left: 46.5%;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: bold;
+}

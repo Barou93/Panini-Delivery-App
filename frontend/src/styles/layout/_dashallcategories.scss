@@ -59,8 +59,12 @@
   align-items: center;
   justify-content: center;
   padding: 60px 10px;
+  ul {
+    display: flex;
+  }
   span {
     margin-left: 12px;
+    cursor: pointer;
   }
 }
 

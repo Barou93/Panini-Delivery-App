@@ -18,7 +18,6 @@ function App() {
         withCredentials: true,
       })
         .then((res) => {
-          console.log(res);
           setUid(res.data);
         })
         .catch((err) => console.log("No Token"));
@@ -30,9 +29,8 @@ function App() {
   return (
     <>
       <UidContext.Provider value={uid}>
-        <ProtectedRoutes />
+        <Routes />
       </UidContext.Provider>
-      <Routes />
     </>
   );
 }

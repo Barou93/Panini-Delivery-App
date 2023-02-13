@@ -25,7 +25,8 @@ const Login = () => {
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
         } else {
-          window.location = "/dashboard";
+          localStorage.setItem("isAuthenticated", "true");
+          window.location = "/admin";
         }
       })
       .catch((err) => {

@@ -43,7 +43,8 @@
   }
   &__picture {
     img {
-      width: 100%;
+      width: 50%;
+      border-radius: 12%;
       @include mobile-first {
         width: 80%;
         margin-bottom: 50px;

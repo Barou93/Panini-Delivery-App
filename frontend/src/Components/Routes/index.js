@@ -12,13 +12,16 @@ import Dashboard from "../../Admin/Dashboard";
 import AddCategory from "../../Admin/AddCategory";
 import AddProduct from "../../Admin/AddProduct";
 import Categories from "../../Admin/Categories";
-import Category from "../../Admin/Category";
 import Products from "../../Admin/Products";
-import ProductOne from "../../Admin/ProductOne";
+import UpdateProduct from "../../Admin/UpdateProduct";
+
 import Orders from "../../Admin/Orders";
 import Settings from "../../Admin/Settings";
 import AdminProtectedRoutes from "../../utils/AdminProtectedRoutes";
 import SideBar from "../SideBar";
+import UpdateCategory from "../../Admin/UpdateCategory";
+
+import CategoryProduct from "../../Admin/CategoryProduct";
 
 const index = () => {
   return (
@@ -38,9 +41,21 @@ const index = () => {
             <Route path="/admin/add-category" element={<AddCategory />} />
             <Route path="/admin/add-product" element={<AddProduct />} />
             <Route path="/admin/categories" element={<Categories />} />
-            <Route path="/admin/category/:id" element={<Category />} />
-            <Route path="/admin/products" element={<Products />} />
-            <Route path="/admin/product/:id" element={<ProductOne />} />
+            <Route
+              path="/admin/categories/:id/products"
+              element={<CategoryProduct />}
+            />
+            <Route
+              path="/admin/category/:id/update-category"
+              element={<UpdateCategory />}
+            />
+
+            <Route path="/admin/products/" element={<Products />} />
+            <Route
+              path="/admin/products/update-product/:id"
+              element={<UpdateProduct />}
+            />
+
             <Route path="/admin/orders" element={<Orders />} />
             <Route path="/admin/settings" element={<Settings />} />
           </Route>

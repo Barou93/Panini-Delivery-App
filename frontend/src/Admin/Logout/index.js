@@ -17,7 +17,8 @@ const index = () => {
     })
       .then(() => removeCookie("jwt"))
       .catch((err) => console.log(err));
-    window.location = "/";
+    localStorage.clear();
+    window.location = "/login";
   };
 
   return (

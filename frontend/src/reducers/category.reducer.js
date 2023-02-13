@@ -1,10 +1,10 @@
-import { GET_CATEGORIES } from "../actions/category.action";
+import { GET_CATEGORY } from "../actions/category.action";
 
 const initialState = {};
 
-export default function categoriesReducer(state = initialState, action) {
+export default function categoryReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_CATEGORIES:
+    case GET_CATEGORY:
       return action.payload;
     default:
       return state;

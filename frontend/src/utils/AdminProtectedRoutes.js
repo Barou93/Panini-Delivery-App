@@ -1,10 +1,14 @@
-import React from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { UidContext } from "../Components/AppContext";
 import SideBar from "../Components/SideBar";
 
 const AdminProtectedRoutes = () => {
-  const auth = { adminToken: false };
-  return auth ? <Outlet /> : <Navigate to="/login" />;
+  const uid = useContext(UidContext);
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+  console.log(uid);
+
+  return <>{isAuthenticated ? <SideBar /> : <Navigate to="/login" />}</>;
 };
 
 export default AdminProtectedRoutes;

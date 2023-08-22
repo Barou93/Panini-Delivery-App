@@ -30,6 +30,7 @@ module.exports.requireAuth = (req, res, next) => {
       if (err) {
         console.log(err);
         res.send(200).json("No Token");
+        res.redirect("/login");
       } else {
         const admin = await Admin.findByPk(decodedToken.id);
         res.locals.admin = admin;
@@ -38,6 +39,7 @@ module.exports.requireAuth = (req, res, next) => {
     });
   } else {
     res.locals.admin = null;
+    res.redirect("/login");
     next();
   }
 };

@@ -11,7 +11,10 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { getProducts } from "./actions/products.action";
 import { getCategories } from "./actions/categories.action";
 import { getProduct } from "./actions/product.action";
-import { getCategory } from "./actions/category.action";
+
+import { getOrders } from "./actions/orders.action";
+
+import { getCarts } from "./actions/carts.action";
 
 const store = createStore(
   rootReducer,
@@ -19,7 +22,8 @@ const store = createStore(
 );
 store.dispatch(getProducts());
 store.dispatch(getProduct());
-store.dispatch(getCategory());
+store.dispatch(getOrders());
+store.dispatch(getCarts());
 store.dispatch(getCategories());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

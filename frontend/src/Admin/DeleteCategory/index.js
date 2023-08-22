@@ -6,7 +6,7 @@ const DeleteCategory = (props) => {
   const dispatch = useDispatch();
 
   const deleteCat = () => {
-    dispatch(deleteCategory());
+    dispatch(deleteCategory(props.id));
   };
   return (
     <div

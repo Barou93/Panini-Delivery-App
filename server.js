@@ -35,7 +35,8 @@ const { requireAuth, checkCart } = require("./middleware/auth.middleware");
 //Jwt ROUTES
 app.get("*", checkCart);
 app.get("/jwtid", requireAuth, (req, res) => {
-  return res.status(200).json(res.locals.admin.id);
+  
+  return res.json(res.locals.admin.id);
 });
 
 //Routes

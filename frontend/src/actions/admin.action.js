@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 
 export const GET_ADMIN = "GET_ADMIN";
@@ -9,6 +11,7 @@ export const getAdmin = (uid) => {
       .then((res) => {
         dispatch({ type: GET_ADMIN, payload: res.data });
       })
+
       .catch((err) => console.log(err));
   };
 };

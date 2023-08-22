@@ -1,3 +1,5 @@
+/** @format */
+
 .dash-body {
   position: relative;
   min-height: 100vh;
@@ -376,7 +378,7 @@
 
 .home_content {
   @include fullscreen {
-    width: calc(100% - 60px);
+    width: calc(100% - 60px) !important;
     left: 70px;
   }
   position: relative;
@@ -389,7 +391,8 @@
 }
 .sidebar.active-dashboard ~ .home_content {
   z-index: 100;
-  width: calc(100% - 220px);
+  //width: calc(100% - 220px);
+  width: 100%;
   left: 78px;
 }
 .home_content .text {

@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 
 export const SidebarData = [
@@ -6,6 +8,7 @@ export const SidebarData = [
     path: "/admin/summary",
     class: "sidebar__icon home",
   },
+
   {
     title: "Categories",
     path: "#",
@@ -49,7 +52,7 @@ export const SidebarData = [
   },
   {
     title: "Paramètres",
-    path: "/admin/settings",
+    path: "/admin/settings/:id",
     class: "sidebar__icon settings",
   },
 ];

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { getProduct, updateProduct } from "../../actions/product.action";
 import { getProducts } from "../../actions/products.action";
 
@@ -47,15 +47,14 @@ const UpdateProduct = () => {
       dispatch(getProducts());
       setIsUpdated(false);
       cancelEdit();
-      window.location = "/admin/products";
+      <Navigate to="/admin/products" />;
     }
-  
   };
 
   const cancelEdit = () => {
-      setEditProduct(null);
-      setUpdatePrice(null);
-    };
+    setEditProduct(null);
+    setUpdatePrice(null);
+  };
   return (
     <div className="home_content  add__content">
       <div className="text">{product.name}</div>
@@ -149,7 +148,6 @@ const UpdateProduct = () => {
               ) : (
                 <button
                   onClick={() => setIsUpdated(!isUpdated)}
-                  value="Modifier"
                   className="dashboard__categories__form__buttons__add"
                 >
                   Modifier

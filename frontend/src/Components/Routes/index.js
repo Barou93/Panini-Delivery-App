@@ -20,6 +20,7 @@ import Settings from "../../Admin/Settings";
 import AdminProtectedRoutes from "../../utils/AdminProtectedRoutes";
 import SideBar from "../SideBar";
 import UpdateCategory from "../../Admin/UpdateCategory";
+import OrderDetails from "../../Admin/OrderDetails";
 
 import CategoryProduct from "../../Admin/CategoryProduct";
 
@@ -57,7 +58,8 @@ const index = () => {
             />
 
             <Route path="/admin/orders" element={<Orders />} />
-            <Route path="/admin/settings" element={<Settings />} />
+            <Route path="/admin/orders/:id" element={<OrderDetails />} />
+            <Route path="/admin/settings/:id" element={<Settings />} />
           </Route>
         </Route>
       </Routes>

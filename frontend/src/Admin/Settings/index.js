@@ -83,7 +83,7 @@ const Settings = () => {
                 class="dashboard__categories__form__buttons__add"
               />
               <div className="dashboard__categories__form__buttons__cancel">
-                <a href="#">Annuler</a>
+                <a href="#11">Annuler</a>
               </div>
             </div>
           </form>

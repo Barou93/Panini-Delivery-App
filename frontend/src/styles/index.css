@@ -1348,13 +1348,13 @@
   font-weight: 500;
 }
 
-.home-content .sales-boxes {
+ .sales-boxes {
   display: flex;
   justify-content: space-between;
 }
 
 /* left box */
-.home-content .sales-boxes .recent-sales {
+ .sales-boxes .recent-sales {
   width: 100%;
   background: #fff;
   padding: 20px 30px;
@@ -1363,8 +1363,7 @@
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-
-.home-content .sales-boxes .sales-details {
+.sales-boxes .sales-details {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1417,7 +1416,7 @@
 }
 
 /* Right box */
-.home-content .sales-boxes .top-sales {
+ .sales-boxes .top-sales {
   width: 35%;
   background: #fff;
   padding: 20px 30px;

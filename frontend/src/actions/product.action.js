@@ -48,8 +48,10 @@ export const deleteProduct = (id) => {
       method: "delete",
       url: `${process.env.REACT_APP_API_URL}api/products/${id}`,
       withCredentials: true,
-    }).then((res) => {
-      dispatch({ type: DELETE_PRODUCT, payload: { id } });
-    });
+    })
+      .then((res) => {
+        dispatch({ type: DELETE_PRODUCT, payload: { id } });
+      })
+      .catch((err) => console.log(err));
   };
 };

@@ -1,6 +1,6 @@
 const models = require("../models");
 
-const { Categorie, Admin } = models;
+const { Categorie, Admin, Product } = models;
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
@@ -112,8 +112,12 @@ module.exports.deleteCategory = async (req, res, next) => {
     fs.unlink(`../frontend/public/uploads/category/${filename}`, () => {
       const result = Categorie.destroy({ where: { id: categorie.id } });
       if (!result) res.status(404).json("Cette catégorie n'existe pas");
-      return res.status(200).json("La catégorie a été bien supprimé");
+      if (result) {
+        Product.destroy({ where: { categorieId: categorie.id } });
+        return res.status(200).json("La catégorie a été bien supprimé");
+      }
     });
+    0;
   } catch (error) {
     next(error);
   }

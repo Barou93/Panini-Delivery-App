@@ -1,15 +1,18 @@
 import React, { useContext, useState } from "react";
 import Logo from "../styles/assets/img/Panini_logo.png";
 import { SidebarData } from "./SidebarData";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import SubMenu from "./SubMenu";
 import { useSelector } from "react-redux";
 import Logout from "../Admin/Logout";
 import { Outlet } from "react-router-dom";
+import { UidContext } from "./AppContext";
 
 const SideBar = () => {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
+  const uid = useContext(UidContext);
+  
   const adminData = useSelector((state) => state.adminReducer);
   return (
     <div>

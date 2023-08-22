@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../actions/products.action";
@@ -74,13 +76,13 @@ const Products = () => {
                 );
               })}
           </div>
-          <Pagination
-            totalProducts={allProducts.length}
-            productsPerPage={productsPerPage}
-            paginate={setCurrentPage}
-            currentPage={currentPage}
-          />
         </div>
+        <Pagination
+          totalProducts={allProducts.length}
+          productsPerPage={productsPerPage}
+          paginate={setCurrentPage}
+          currentPage={currentPage}
+        />
       </main>
     </div>
   );

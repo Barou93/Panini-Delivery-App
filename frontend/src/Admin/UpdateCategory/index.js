@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { updateCategory } from "../../actions/categories.action";
 import { getCategory } from "../../actions/category.action";
 
 const UpdateCategory = () => {
   const [editCategory, setEditCategory] = useState("");
+  const [updatedCate, setUpdatedCate] = useState(false);
   const [loadCategory, setLoadCategory] = useState(true);
-  const [locked, setLocked] = useState(false);
   const oneCategory = useSelector((state) => state.categoryReducer);
+
+  //console.log(oneCategory);
 
   const { id: cateId } = useParams();
 
@@ -26,7 +28,8 @@ const UpdateCategory = () => {
       const data = new FormData();
       data.append("name", editCategory);
       await dispatch(updateCategory(cateId, editCategory));
-      window.location = "/admin/categories";
+
+      <Navigate to="/admin/categories" />;
     }
   };
   return (
@@ -41,13 +44,20 @@ const UpdateCategory = () => {
             <div className="dashboard__categories__form__container">
               <div className="dashboard__categories__form__text">
                 <label htmlFor="name">Nom de la catégorie</label>
-                <input
-                  type="text"
-                  value={oneCategory.name}
-                  onChange={(e) => setEditCategory(e.target.value)}
-                  placeholder="Entrez le nom de la catégorie"
-                  className="dashboard__categories__form__container__input"
-                />
+                {updatedCate === false && (
+                  <p className="dashboard__categories__form__container__input">
+                    {oneCategory.name}
+                  </p>
+                )}
+                {updatedCate && (
+                  <input
+                    type="text"
+                    defaultValue={oneCategory.name}
+                    onChange={(e) => setEditCategory(e.target.value)}
+                    placeholder="Entrez le nom de la catégorie"
+                    className="dashboard__categories__form__container__input"
+                  />
+                )}
               </div>
               <div className="dashboard__categories__form__picture">
                 <input
@@ -62,17 +72,26 @@ const UpdateCategory = () => {
                 </label>
               </div>
               <div className="dashboard__categories__form__buttons">
-                <input
-                  type="submit"
-                  value="Ajouter"
-                  className="dashboard__categories__form__buttons__add"
-                />
-                <span
-                  onClick={(e) => setLocked(!locked)}
+                {updatedCate ? (
+                  <input
+                    type="submit"
+                    value="Enregistrer"
+                    className="dashboard__categories__form__buttons__add"
+                  />
+                ) : (
+                  <button
+                    onClick={() => setUpdatedCate(!updatedCate)}
+                    className="dashboard__categories__form__buttons__add"
+                  >
+                    Modifier
+                  </button>
+                )}
+                <Link
+                  to="/admin/categories"
                   className="dashboard__categories__form__buttons__cancel"
                 >
                   Annuler
-                </span>
+                </Link>
               </div>
             </div>
           </form>

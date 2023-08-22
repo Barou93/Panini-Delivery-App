@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { isEmpty } from "../../Components/Utils";
@@ -40,7 +42,7 @@ const AddProduct = () => {
       <Navigate to="/admin/products" />;
     }
   };
-  
+
   const cancelProduct = () => {
     setProductImg("");
     setProductText("");

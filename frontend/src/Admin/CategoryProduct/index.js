@@ -1,11 +1,10 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getCategory } from "../../actions/category.action";
-import {
-  getCategoryProducts,
-  getProducts,
-} from "../../actions/products.action";
+import { getProducts } from "../../actions/products.action";
 import Pagination from "../../Components/Pagination";
 import { isEmpty } from "../../Components/Utils";
 import DeleteProduct from "../DeleteProduct";

@@ -111,9 +111,12 @@ const Orders = () => {
                 {!isEmpty(currentOrders[0]) &&
                   currentOrders.map((order, index) => {
                     return (
+                    <li key={index}>
                       <Link className="order-print" to={`${order.id}`}>
                         Afficher
                       </Link>
+                        
+                      </li>
                     );
                   })}
               </ul>

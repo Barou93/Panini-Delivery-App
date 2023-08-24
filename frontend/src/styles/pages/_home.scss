@@ -1,3 +1,5 @@
+/** @format */
+
 .main {
   background-color: #fff;
   padding: 25px 0;
@@ -22,10 +24,16 @@
   align-items: center;
   margin-left: 20px;
   margin-right: 20px;
+
   &__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 8px 25px;
     text-align: center;
-    font-size: 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
   }
   &__img {
     height: 33px;
@@ -116,6 +124,8 @@
     border-radius: 50%;
     padding: 4px 8px;
     text-align: center;
+    border: none;
+    cursor: pointer;
     img {
       width: 80%;
       height: 35px;
@@ -137,8 +147,15 @@
 //Active red background if link is cliked
 .active-link {
   background-color: $primarycolor;
-  padding: 18px 14px;
+  padding: 8px 18px;
   border-radius: 6px;
   font-family: $font-2;
   color: #fff;
+  &__default {
+    background-color: $primarycolor;
+    padding: 22px 18px;
+    border-radius: 6px;
+    font-family: $font-2;
+    color: #fff;
+  }
 }

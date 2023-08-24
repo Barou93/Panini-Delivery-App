@@ -25,9 +25,6 @@ const Products = () => {
     }
   }, [dispatch, products, loadProducts]);
 
-  // Get current posts
-  console.log(allProducts);
-
   const paginate = (page) => {
     setCurrentPage(page);
   };

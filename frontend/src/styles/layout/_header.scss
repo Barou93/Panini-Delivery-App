@@ -1,3 +1,5 @@
+/** @format */
+
 .header {
   display: flex;
   flex-direction: column;
@@ -107,6 +109,8 @@
     //position: absolute;
     width: 100%;
     margin-bottom: 10px;
+    background: #f2f2f2;
+    padding: 15px 0;
     span {
       position: absolute;
       min-width: 50px;
@@ -125,6 +129,9 @@
       padding: 10px 50px;
       color: $opacitycolor;
       font-size: 17px;
+      @include desktop {
+        width: 40%;
+      }
     }
   }
 }

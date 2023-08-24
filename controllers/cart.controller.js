@@ -1,3 +1,5 @@
+/** @format */
+
 const models = require("../models");
 
 const { Product, Option, Cart, OrderItem } = models;
@@ -37,7 +39,7 @@ module.exports.addToCart = async (req, res, next) => {
     if (!token) {
       const cart = await Cart.create({});
       cart.save();
-      console.log(cart);
+
       const sessionToken = createToken(cart.id);
       res.cookie("cart", sessionToken, { httpOnly: true, maxAge });
       if (cart) {
@@ -55,7 +57,7 @@ module.exports.addToCart = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.CART_TOKEN);
       const cartId = decoded.id;
       const cardExisting = await Cart.findByPk(cartId);
-      console.log(cardExisting);
+
       if (cardExisting) {
         const addOrder = await OrderItem.create({
           CartId: cartId,

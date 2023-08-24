@@ -1,3 +1,5 @@
+/** @format */
+
 .product__head {
   display: none !important;
   @include desktop {
@@ -13,16 +15,13 @@
   @include desktop {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
     flex-wrap: nowrap;
     height: 100%;
-    margin: 1rem 2.5rem;
-    max-width: max-content;
+    margin: 0 20px;
   }
 
   &__header {
-    flex: 100%;
-
     .backtohome {
       display: none;
       @include desktop {
@@ -44,13 +43,9 @@
     }
   }
   &__img {
-    @include desktop {
-      flex: 0 0 50%;
-    }
     img {
       width: 100%;
       object-fit: cover;
-      opacity: 0.86;
     }
   }
 
@@ -61,6 +56,7 @@
 
     @include desktop {
       position: relative;
+      top: 180px;
     }
     &__options {
       width: 100%;
@@ -91,6 +87,11 @@
         height: 50px;
         line-height: 50px;
         color: #fff;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
       }
       @include desktop {
         position: relative;
@@ -104,8 +105,8 @@
     //padding-left: 8px;
     flex: 1;
     @include desktop {
-      flex: 0 0 40%;
-      margin: 0.8rem;
+      flex: 0 0 50%;
+      margin: 0 15px;
     }
 
     &__category {
@@ -147,11 +148,11 @@
       flex-direction: column;
       padding: 0 8px;
       @include desktop {
-        margin-bottom: 8.9rem;
+        margin-bottom: 0 15px;
       }
 
       h3 {
-        font-size: 22px;
+        font-size: 50px;
         font-family: $font-3;
         font-weight: 800;
         color: $blackcolor;
@@ -160,7 +161,7 @@
         }
       }
       h4 {
-        font-size: 20px;
+        font-size: 35px;
         margin: 20px 0;
         font-family: $font-2;
         color: $primarycolor;

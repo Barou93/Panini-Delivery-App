@@ -55,10 +55,10 @@ const Home = () => {
 
   const lastPageIndex = currentPage * productsPerPage;
   const fristPageIndex = lastPageIndex - productsPerPage;
-  const currentProducts = Object.values(allProducts).slice(
-    fristPageIndex,
-    lastPageIndex
-  );
+  // const currentProducts = Object.values(allProducts).slice(
+  //   fristPageIndex,
+  //   lastPageIndex
+  // );
   //console.log(currentProducts);
   return (
     <div>

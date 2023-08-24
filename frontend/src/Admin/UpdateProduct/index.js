@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Navigate, useParams } from "react-router-dom";
@@ -17,8 +19,6 @@ const UpdateProduct = () => {
   const [isImgUpload, setIsImgUpload] = useState("");
   const product = useSelector((state) => state.productReducer);
   const categories = useSelector((state) => state.categoriesReducer);
-
-  console.log(product);
 
   const dispatch = useDispatch();
   const { id: productId } = useParams();

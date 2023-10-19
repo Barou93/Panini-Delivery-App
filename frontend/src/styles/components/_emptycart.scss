@@ -1,0 +1,27 @@
+/** @format */
+
+.empty__cart {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &__img {
+    width: 270px;
+    height: 270px;
+  }
+
+  &__text {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+  &__small {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+  }
+  &__link {
+    background: $primarycolor;
+    color: #fff;
+    padding: 12px 8px;
+  }
+}

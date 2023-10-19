@@ -1,10 +1,12 @@
+/** @format */
+
 import React from "react";
 import axios from "axios";
 import cookie from "js-cookie";
 
 const index = () => {
   const removeCookie = (key) => {
-    if (window === "undefined") {
+    if (window !== "undefined") {
       cookie.remove(key, { expire: 1 });
     }
   };

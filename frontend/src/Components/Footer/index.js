@@ -8,11 +8,11 @@ import OrderWhite from "../../styles/assets/icons/order-white.svg";
 const Footer = () => {
   return (
     <div>
-      <footer class="mobile__appviewer footer">
-        <div class="footer__details">
-          <div class="footer__logo">
+      <footer className="mobile__appviewer footer">
+        <div className="footer__details">
+          <div className="footer__logo">
             <a href="index.html">
-              <p class="header__topbar__logo">Panini</p>
+              <p className="header__topbar__logo">Panini</p>
             </a>
           </div>
 

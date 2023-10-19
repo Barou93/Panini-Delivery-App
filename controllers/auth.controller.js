@@ -1,3 +1,5 @@
+/** @format */
+
 const models = require("../models");
 const Admin = models.Admin;
 const jwt = require("jsonwebtoken");

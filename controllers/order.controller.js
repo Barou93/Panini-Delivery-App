@@ -1,6 +1,6 @@
-const { Op } = require("sequelize");
-const models = require("../models");
+/** @format */
 
+const models = require("../models");
 const { Product, OrderItem, Cart, Option, ShopOrder } = models;
 
 const { pagination } = require("../utils/pagination");
@@ -13,14 +13,12 @@ const { pagination } = require("../utils/pagination");
  */
 
 module.exports.createOrder = async (req, res) => {
-  const { username, phone_number, address, status, totalPrice } = req.body;
-
+  const { cartId, username, phone_number, address, status, totalPrice } =
+    req.body;
   try {
-    const { id } = req.params;
+    //const { id } = req.body;
 
-    const cart = await Cart.findByPk(id);
-
-    console.log(cart.id);
+    const cart = await Cart.findByPk(cartId);
 
     const order = await OrderItem.findAll({
       where: { cartId: cart.id },
@@ -55,8 +53,6 @@ module.exports.createOrder = async (req, res) => {
     //Faire la somme total des prix des produits contenu dans le tableau
     const totalPrices = total.reduce((a, b) => a + b, 0);
 
-    console.log(totalPrices);
-
     //Créer la commande après vérification
     const createOrder = await ShopOrder.create({
       orderId: cart.id,
@@ -71,21 +67,22 @@ module.exports.createOrder = async (req, res) => {
     res.cookie("cart", "", { maxAge: 1 });
     return res.status(201).json(createOrder);
   } catch (error) {
-    return res.status(500).json(error.message);
+    return res.status(500).json({ "error:": error.message });
   }
 };
-module.exports.getAllOrders = async (req, res, next) => {
+module.exports.getAllOrders = async (req, res) => {
   try {
     const allOrders = await ShopOrder.findAll({
       order: [["createdAt", "DESC"]],
     });
-    return res.send(allOrders);
+    return res.status(200).json(allOrders);
   } catch (error) {
-    return res.status(500).json(error);
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-module.exports.getOrder = async (req, res, next) => {
+module.exports.getOrder = async (req, res) => {
   try {
     const { id } = req.params;
     await ShopOrder.findByPk(id)
@@ -128,7 +125,6 @@ module.exports.deleteOrders = async (req, res, next) => {
   try {
     const { id } = req.params;
     const order = await ShopOrder.findOne({ where: { id } });
-    //const item = await OrderItem.finOne({ where: { orderId: order.CartId } });
 
     if (order) {
       const deleteOrder = await ShopOrder.destroy({ where: { id: order.id } });

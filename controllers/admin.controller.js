@@ -1,7 +1,10 @@
+/** @format */
+
 const models = require("../models");
 const Admin = models.Admin;
 
 /**
+ *
  *
  * @param {String} req
  * @param {String} res

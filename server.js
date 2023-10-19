@@ -1,3 +1,5 @@
+/** @format */
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -32,10 +34,12 @@ app.use(cors(corsOptions));
 
 const { requireAuth, checkCart } = require("./middleware/auth.middleware");
 
+//Get cart cookies
+app.get("/cartId", checkCart, (req, res) => {
+  return res.status(200).json(res.locals.cart.id);
+});
 //Jwt ROUTES
-app.get("*", checkCart);
 app.get("/jwtid", requireAuth, (req, res) => {
-  
   return res.json(res.locals.admin.id);
 });
 

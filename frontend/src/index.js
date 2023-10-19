@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -10,18 +12,19 @@ import rootReducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { getProducts } from "./actions/products.action";
 import { getCategories } from "./actions/categories.action";
-import { getProduct } from "./actions/product.action";
-
+//import { getProduct } from "./actions/product.action";
 import { getOrders } from "./actions/orders.action";
 
 import { getCarts } from "./actions/carts.action";
+import { setCart } from "./actions/cart.action";
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+store.dispatch(setCart());
 store.dispatch(getProducts());
-store.dispatch(getProduct());
+//store.dispatch(createOrder());
 store.dispatch(getOrders());
 store.dispatch(getCarts());
 store.dispatch(getCategories());

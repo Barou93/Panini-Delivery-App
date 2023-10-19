@@ -1,3 +1,5 @@
+/** @format */
+
 import { GET_CATEGORY } from "../actions/category.action";
 
 const initialState = {};

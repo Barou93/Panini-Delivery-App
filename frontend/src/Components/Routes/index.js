@@ -23,7 +23,6 @@ import AdminProtectedRoutes from "../../utils/AdminProtectedRoutes";
 import SideBar from "../SideBar";
 import UpdateCategory from "../../Admin/UpdateCategory";
 import OrderDetails from "../../Admin/OrderDetails";
-
 import CategoryProduct from "../../Admin/CategoryProduct";
 
 const index = () => {

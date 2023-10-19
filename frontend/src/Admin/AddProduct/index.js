@@ -20,8 +20,6 @@ const AddProduct = () => {
 
   const dispatch = useDispatch();
 
-  //console.log(categoryId)
-
   const handlePreviewImg = (e) => {
     const bloUrl = URL.createObjectURL(e.target.files[0]);
     setPreview(bloUrl);
@@ -47,8 +45,6 @@ const AddProduct = () => {
     setProductImg("");
     setProductText("");
   };
-
-  console.log(categoryId);
 
   return (
     <div className="home_content  add__content">

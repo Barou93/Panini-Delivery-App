@@ -1,3 +1,5 @@
+/** @format */
+
 const models = require("../models");
 
 const { Admin, Categorie, Product } = models;

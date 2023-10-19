@@ -14,10 +14,18 @@ const createToken = (id) => {
   });
 };
 
+//Create a cart
 module.exports.addToCart = async (req, res, next) => {
   try {
     const token = req.cookies.cart;
 
+    let cartId; // Initialisez la variable cartId
+
+    // Récupérez l'ID du panier à partir du cookie
+    if (token) {
+      const decoded = jwt.verify(token, process.env.CART_TOKEN);
+      cartId = decoded.id;
+    }
     const { productId, optionId, quantity } = req.body;
     const product = await Product.findByPk(productId);
 
@@ -27,10 +35,13 @@ module.exports.addToCart = async (req, res, next) => {
       option = req.body.optionId;
     }
     const isFound = await OrderItem.findOne({
-      where: { productId: product.id },
+      where: {
+        productId: product.id,
+        cartId: cartId,
+      },
     });
 
-    //Verifier si l'article a déjà été ajouté au panier
+    //Check if item has already been added to cart
     if (isFound)
       return res
         .status(401)
@@ -72,13 +83,70 @@ module.exports.addToCart = async (req, res, next) => {
     return res.status(500).json(error);
   }
 };
+// module.exports.addToCart = async (req, res, next) => {
+//   try {
+//     const { productId, optionId, quantity } = req.body;
+//     const product = await Product.findByPk(productId);
 
+//     let option;
+
+//     if (optionId !== undefined) {
+//       option = req.body.optionId;
+//     }
+
+//     const existingCart = JSON.parse(localStorage.getItem("cartData")) || [];
+//     // Check if the item is already in the cart
+//     const isFound = existingCart.find((item) => item.productId === productId);
+
+//     if (isFound) {
+//       return res
+//         .status(401)
+//         .json(`${product.name} a déjà été ajouté au panier`);
+//     }
+
+//     // If the item is not in the cart, add it to the local cart data
+//     existingCart.push({ productId, optionId: option, quantity });
+//     localStorage.setItem("cartData", JSON.stringify(existingCart));
+
+//     // Create a new cart (if it doesn't exist)
+//     const cart = await Cart.create({});
+//     cart.save();
+
+//     // Continue with other logic, like creating an OrderItem in the database.
+//     const createOrder = await OrderItem.create({
+//       CartId: cart.id,
+//       productId,
+//       quantity,
+//       optionId: option,
+//     });
+
+//     // Respond with success.
+//     return res.status(201).json({ order: createOrder.toJSON() });
+//   } catch (error) {
+//     return res.status(500).json(error);
+//   }
+// };
+
+//Get all cart
+// module.exports.getCarts = async (req, res) => {
+//   try {
+//     const allCartItems = await OrderItem.findAll({
+//       order: [["createdAt", "DESC"]],
+//     });
+//     return res.send(allCartItems);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+//Get cart by cartId
 module.exports.getCarts = async (req, res) => {
   try {
-    const allCartItems = await OrderItem.findAll({
+    //const cart = await OrderItem.findOne({ where: { cartId: id } });
+    const cartByCartId = await OrderItem.findAll({
       order: [["createdAt", "DESC"]],
     });
-    return res.send(allCartItems);
+    return res.status(200).json(cartByCartId);
   } catch (error) {
     return res.status(500).json(error);
   }

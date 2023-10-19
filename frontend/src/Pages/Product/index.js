@@ -17,8 +17,7 @@ const Product = () => {
   const dispatch = useDispatch();
   const { id: productId } = useParams();
   const productID = parseInt(productId);
-  console.log(productID);
-  console.log(product.id);
+
   useEffect(() => {
     if (loadProduct) {
       dispatch(getProduct(productId));

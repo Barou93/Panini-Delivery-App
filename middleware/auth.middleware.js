@@ -1,3 +1,5 @@
+/** @format */
+
 const jwt = require("jsonwebtoken");
 const models = require("../models");
 const { Admin, Cart } = models;
@@ -28,7 +30,6 @@ module.exports.requireAuth = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
-        console.log(err);
         res.send(200).json("No Token");
         res.redirect("/login");
       } else {
@@ -50,18 +51,18 @@ module.exports.checkCart = async (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.CART_TOKEN, async (err, decodedToken) => {
       if (err) {
-        res.locals.cart = null;
-
+        res.status(200).json("Le panier est vide");
         res.cookie("cart", "", { maxAge: 1 });
         next();
       } else {
         const cart = await Cart.findByPk(decodedToken.id);
+        console.log(decodedToken.id);
         res.locals.cart = cart;
         next();
       }
     });
   } else {
-    res.locals.admin = null;
+    res.locals.cart = null;
     next();
   }
 };

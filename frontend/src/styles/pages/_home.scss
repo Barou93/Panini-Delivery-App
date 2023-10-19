@@ -65,7 +65,6 @@
 
 .store__product {
   display: flex;
-  align-items: center;
   flex-direction: column;
   min-width: 0;
   background-color: #fff;
@@ -120,15 +119,18 @@
     }
   }
   .addtocart {
-    background-color: $primarycolor;
-    border-radius: 50%;
-    padding: 4px 8px;
+    background-color: transparent;
+    padding: 15px 8px;
     text-align: center;
-    border: none;
+    border: 1px solid $primarycolor;
     cursor: pointer;
-    img {
-      width: 80%;
-      height: 35px;
+    color: $primarycolor;
+    font-size: 16px;
+    font-weight: bold;
+    &:hover {
+      background-color: $primarycolor;
+      color: #fff;
+      opacity: 0.86;
     }
   }
 }

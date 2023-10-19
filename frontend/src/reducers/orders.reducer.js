@@ -1,3 +1,5 @@
+/** @format */
+
 import {
   DELETE_ORDER,
   GET_ORDERS,
@@ -6,7 +8,7 @@ import {
 
 const initialState = {};
 
-export default function orderReducer(state = initialState, action) {
+export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.payload;

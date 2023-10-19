@@ -1,3 +1,5 @@
+/** @format */
+
 import {
   GET_PRODUCT,
   UPDATE_PRODUCT,

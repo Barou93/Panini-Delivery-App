@@ -1,5 +1,8 @@
+/** @format */
+
 import Routes from "./Components/Routes";
 import { UidContext } from "./Components/AppContext";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -7,6 +10,7 @@ import { getAdmin } from "./actions/admin.action";
 
 function App() {
   const [uid, setUid] = useState(null);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchAdminToken = async () => {

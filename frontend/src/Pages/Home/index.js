@@ -6,10 +6,11 @@ import Footer from "../../Components/Footer";
 import Pagination from "../../Components/Pagination";
 import OrderWhite from "../../styles/assets/icons/order-white.svg";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { isEmpty } from "../../Components/Utils";
 import { getProducts } from "../../actions/products.action";
+import { addToCart } from "../../actions/cart.action";
 import Search from "../../Components/Search";
 
 const Home = () => {
@@ -23,10 +24,10 @@ const Home = () => {
   const [loadProducts, setLoadProducts] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(6);
+  const [productsPerPage] = useState(8);
   const [searchQuery, setSearchQuery] = useState("");
   const [displayedProducts, setDisplayedProducts] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     //Get all products in database
     if (loadProducts) {
@@ -53,13 +54,18 @@ const Home = () => {
     }
   }, [products, searchQuery, selectedCategory]);
 
+  const handleAddToCart = async (productId) => {
+    const quantity = 1;
+    console.log(productId);
+    console.log(quantity);
+    await dispatch(addToCart(productId, quantity));
+
+    //navigate("/panier");
+  };
+
   const lastPageIndex = currentPage * productsPerPage;
   const fristPageIndex = lastPageIndex - productsPerPage;
-  // const currentProducts = Object.values(allProducts).slice(
-  //   fristPageIndex,
-  //   lastPageIndex
-  // );
-  //console.log(currentProducts);
+
   return (
     <div>
       <Header />
@@ -123,11 +129,15 @@ const Home = () => {
                         <h3>{product.name} </h3>
                         <h4 className="price">{product.price} F CFA</h4>
                       </hgroup>
-                      <button className="addtocart">
-                        <img src={OrderWhite} alt="ajouter au panier" />
-                      </button>
                     </header>
                   </Link>
+                  <button
+                    onClick={() => handleAddToCart(product.id)}
+                    className="addtocart"
+                  >
+                    {/*<img src={OrderWhite} alt="ajouter au panier" />*/}
+                    Ajouter au panier
+                  </button>
                 </article>
               ))
             ) : (

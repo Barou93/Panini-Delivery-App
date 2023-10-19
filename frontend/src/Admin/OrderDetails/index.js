@@ -11,10 +11,8 @@ const OrderDetails = () => {
   const products = useSelector((state) => state.productsReducer);
   const carts = useSelector((state) => state.cartsReducer);
   const { id: orderId } = useParams();
-  const orderid = orders.map((order) => order.id);
 
   const IdOrder = parseInt(orderId);
-  //console.log(orderid.includes(orderId));
 
   return (
     <div>
